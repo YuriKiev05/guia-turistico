@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+input{
+    width: 40%;
+    height: 30px;
+    
+    
+}
+
+h1, label{
+    text-shadow: 0px 0px 1px black;
+}
+
+#btn-submit{
+    width: 40.6%;
+}
