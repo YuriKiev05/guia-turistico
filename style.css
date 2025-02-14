@@ -36,7 +36,7 @@ main{
     gap: 9px;
 }
 
-#item{
+.item{
     border: solid 2px green;
     border-radius: 10px;
     box-shadow: 0px 0px 5px black;
@@ -45,18 +45,23 @@ main{
     
 }
 
-#item>h1{
+.item>h1{
     font-size: 40px;
 
 }
 
-#item>p{
+.item>img{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.item>p{
     font-size: 25px;
     margin-bottom: 20px;
 
 }
 
-#item>a{
+.item>a{
     border: 1px solid black;
     margin-bottom: 20px;
     font-size: 25px;

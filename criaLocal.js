@@ -1,53 +1,97 @@
-/*const nome = document.getElementById('inpNome')
+//import { writeFileSync } from 'fs'
+const apiUrl = 'http://localhost:3000/0';
+
+//inputs
+const nome = document.getElementById('inpNome')
 const img = document.getElementById('inpImg')
 const desc = document.getElementById('inpDesc')
-const btn = document.getElementById('btn-submit')*/
+const btnSubmit = document.getElementById('btn-submit') 
 
-class Item{
-    constructor(nome, img, descricao){
-        this.nome = nome
-        this.img = img
-        this.descricao = descricao
-        this.id = ''
 
-       
-    }
+
+async function getLocais(){
+    const response = await fetch(apiUrl)
+    const locais = await response.json()
+    return locais
+}
+
+async function addLocal(nome, urlImg, desc){
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, urlImg, desc})
+    })
+
+    const local = await response.json()
+    getLocais()
+}
+
+
+btnSubmit.addEventListener('click', e =>{
+    e.preventDefault()
+    addLocal(nome.value, img.value, desc.value)
+})
+
+getLocais()
+
+
+
+function exibeElementos(){
+    
+    fetch(apiUrl)
+    .then(response => response.json()
+    .then(locais =>{
+        for(let local of locais){
+            console.log(local)
+            const divLocal = document.createElement('div')
+            const desc = document.createElement('p')
+            const btnApagar = document.createElement('button')
+    
+            desc.innerHTML = `nome: ${local.nome}    descricao: ${local.desc}`
+            btnApagar.innerHTML = 'APAGAR'
+    
+    
+            divLocal.appendChild(desc)
+            divLocal.appendChild(btnApagar)
+    
+            divLocal.classList.add('local')
+            divLocal.id = local.id
+    
+            btnApagar.addEventListener('click', () =>{
+                apagaElem(local.id)
+            })
+
+
+            document.getElementById('listaElem').appendChild(divLocal)
+            
+     
+        }
+        
+    }))
+
 
     
-    geraID(){
-        
-       for(let i = 0; i<8; i++){
-        this.id += Math.floor(Math.random() * 9).toString()
-       }
-    }
-
+    
+  
+    
 }
 
-const itens = []
-
-
-/*btn.addEventListener('click', e =>{
-    e.preventDefault()
-    criaItem(nome.value, img.value, descricao.value)
-
-})*/
-
-function criaItem(nome, img, descricao){
-    const item = new Item(nome, img, descricao)
-    item.geraID()
-    itens.push(item)
-   
+async function apagaElem(id){
+    await fetch(`${apiUrl}/${id}`, { method: 'DELETE'});
+    getLocais();
 }
 
+exibeElementos()
 
 
 
 
-criaItem('joao ', 'linkDam', 'lugar ')
-criaItem('joao pessoa', 'linkDaImagem', ' legal')
-criaItem(' pessoa', 'liaImagem', 'lugal')
-criaItem('joao pessoa', 'linkDaImagem', 'lugar legal')
-console.log(itens)
+
+
+
+
+
+
 
 
 

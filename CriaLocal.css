@@ -1,3 +1,4 @@
+
 *{
     margin: 0;
     padding: 0;
@@ -30,3 +31,28 @@ h1, label{
 #btn-submit{
     width: 40.6%;
 }
+
+
+#listaElem{
+    width: 80%;
+    margin: auto;
+    
+
+
+}
+
+
+.local{
+    width: 100%;
+
+    border: solid 1px black;
+    height: 30px;
+    font-size: 30px;
+
+}
+
+button, p{
+    display: inline-block;
+    margin-left: 20px;
+}
+
